@@ -1,0 +1,17 @@
+package com.crudproducto.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.crudproducto.entity.Producto;
+
+@Repository
+public interface IProductoDao extends JpaRepository<Producto, Integer> {
+	
+	@Transactional
+	@Query(value = "SELECT nombre from producto where nombre=?1 order by nombre", nativeQuery = true)
+	public String isProduct(String nombre);
+
+}

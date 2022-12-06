@@ -1,0 +1,14 @@
+package com.crudproducto.servicio;
+
+import com.crudproducto.dto.ProductoDto;
+
+public interface IProductoService {
+
+	/**
+	 * Guardar un producto en la base datos
+	 * 
+	 * @param dto
+	 */
+	public void insertProducto(ProductoDto dto);
+
+}

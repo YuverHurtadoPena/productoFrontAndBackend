@@ -1,0 +1,14 @@
+package com.crudproducto.servicio.impl;
+
+import com.crudproducto.dto.ProductoDto;
+import com.crudproducto.servicio.IProductoService;
+
+public class ProductoService implements IProductoService{
+
+	@Override
+	public void insertProducto(ProductoDto dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

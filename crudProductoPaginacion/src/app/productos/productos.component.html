@@ -1,0 +1,114 @@
+<div id="listaProducto">
+  <div class="card text-center">
+    <div class="card-header">
+      PRODUCTOS
+    </div>
+    <div class="card-body" style="display: inline-flex;margin: auto;">
+      <div>
+        <input type="text" class="form-control" placeholder="Buscar por nombre" #buscarbyName
+          (keyup)="buscarProducto(buscarbyName.value)">
+      </div>
+      <div style="margin-right: 10px;margin-left: 10px;">
+        <select class="form-select" (change)="loadProduct($event)">
+          <option value="3">Todos los productos</option>
+          <option value="1">Productos baratos</option>
+          <option value="2">Productos costosos</option>
+        </select>
+      </div>
+      <div>
+        <a class="btn" style="background-color: green; color:white">
+          <i style="margin-right: 10px" class="fa-sharp fa-solid fa-plus"></i>
+          <button type="button" style="background-color: green; color:white; border:none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Nuevo producto
+          </button>
+        </a>
+      </div>
+
+    </div>
+    <div class="card-footer text-muted">
+      {{dia}}/{{mes}}/{{anno}} - {{hora}}:{{minuto}}
+    </div>
+  </div>
+
+
+
+  <!--Inicio lista-->
+
+  <table id="customers">
+    <th>Nombre</th>
+    <th>Precio</th>
+    <th>Descripcion</th>
+    <th>Fecha registro</th>
+    <th>Acción</th>
+
+    <tr *ngFor="let item of productDto | productoPipe:paginaNumero:search;">
+      <td>{{item.nombre}}</td>
+      <td>${{item.valor}}</td>
+      <td>{{item.descripcion}}</td>
+      <td>{{item.fechaRegistro | date:'dd/MM/yyyy'}}</td>
+      <td>
+        <i style="margin-right: 10px; color: green;" class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)=" setValoresToForm(item.nombre, item.descripcion, item.valor)"></i>
+
+        <i style=" color: red;" class="fa-solid fa-trash-can" (click)="deleteProduct(item.nombre)"></i>
+      </td>
+    </tr>
+  </table>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><button class="page-link" (click)=" backPage()">Atras</button></li>
+      <div *ngFor="let it of arrayPagina | paginadorPipe:paginatorNumber">
+        <li class="page-item"><a class="page-link" (click)="movePaginator(it)">{{it+1}}</a></li>
+      </div>
+      <li *ngIf="(productDto | productoPipe:paginaNumero:search).length !== 0" class="page-item"><button
+          class="page-link" (click)=" nextPage()">Siguiente</button></li>
+    </ul>
+  </nav>
+  <div *ngIf="(productDto | productoPipe:paginaNumero:search).length === 0">
+    <p>No hay mas paginas disponibles</p>
+  </div>
+
+   <!--inicio formulario-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formulario">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Nombre:</label>
+            <input type="text" (keyup)=" validarCampos()" class="form-control" id="exampleFormControlInput1" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Precio:</label>
+            <input type="number" (keyup)=" validarCampos()" class="form-control" id="exampleFormControlInput1" formControlName="precio">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Descripción</label>
+            <textarea (keyup)=" validarCampos()" class="form-control" id="exampleFormControlTextarea1" rows="3"
+              formControlName="description"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <p *ngIf="!isValidForm" style="color:red">Debe llenar todos los campos</p>
+        <button  *ngIf="!editar && isValidForm" type="button" class="btn btn-primary"data-bs-dismiss="modal" (click)="saveProduct()">Guardar</button>
+
+        <div  *ngIf="editar  && isValidForm" style="margin: auto;">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="updateProduct()">Editar</button>
+          <button type="button" class="btn btn-success" style="margin-left:10px" (click)="clear()">Limpiar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+

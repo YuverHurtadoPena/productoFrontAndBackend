@@ -1,0 +1,9 @@
+package com.crudproducto.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.crudproducto.entity.Producto;
+
+public interface IProductoDao extends JpaRepository<Producto, Integer>{
+
+}

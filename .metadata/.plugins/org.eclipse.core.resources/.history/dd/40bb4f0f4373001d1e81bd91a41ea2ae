@@ -1,0 +1,5 @@
+package com.crudproducto.dao.impl;
+
+public class ProductoDaoImpl {
+
+}

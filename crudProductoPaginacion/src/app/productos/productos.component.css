@@ -1,0 +1,32 @@
+#listaProducto{
+  margin: 40px;
+}
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color:#C4F7CE;}
+
+#customers tr:hover {background-color: #ECEFAC;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+
+}
+.form-select{
+  background-color: green !important;
+  color: white !important;
+}
+.form-control{
+  border: 1px solid green !important;
+}

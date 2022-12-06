@@ -1,0 +1,16 @@
+package com.crudproducto.servicio.impl;
+
+import org.springframework.http.ResponseEntity;
+
+import com.crudproducto.dto.ProductoDto;
+import com.crudproducto.servicio.IProductoService;
+
+public class ProductoService implements IProductoService{
+
+	@Override
+	public ResponseEntity<?> insertProducto(ProductoDto dto) {
+		return null;
+		
+	}
+
+}

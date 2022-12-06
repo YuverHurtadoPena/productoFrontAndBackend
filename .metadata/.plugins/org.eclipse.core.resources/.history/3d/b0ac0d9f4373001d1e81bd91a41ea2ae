@@ -1,0 +1,5 @@
+package com.crudproducto.dto;
+
+public class ProductoDto {
+
+}

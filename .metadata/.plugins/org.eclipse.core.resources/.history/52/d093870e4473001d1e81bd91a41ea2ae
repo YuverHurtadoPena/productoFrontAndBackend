@@ -1,0 +1,5 @@
+package com.crudproducto.servicio;
+
+public interface IProductoService {
+
+}

@@ -1,0 +1,3 @@
+export class MensajeDto {
+  mensaje = "";
+}

@@ -1,0 +1,39 @@
+package com.crudproducto.servicio;
+
+import org.springframework.http.ResponseEntity;
+
+import com.crudproducto.dto.ProductoDto;
+
+public interface IProductoService {
+
+	/**
+	 * retorna todos los productos
+	 * 
+	 * @return lista de productos
+	 */
+	public ResponseEntity<?> getListaProductos();
+
+	/**
+	 * sirve para obtener los productos baratos o caros
+	 * 
+	 * @param criterio
+	 * @return lista de productos
+	 */
+	public ResponseEntity<?> getProductosBaratosOrCaros(Integer criterio);
+
+	/**
+	 * sirve para guardar un producto
+	 * 
+	 * @param dto
+	 * @return
+	 */
+	public ResponseEntity<?> guardarProducto(ProductoDto dto);
+
+	/**
+	 * Guardar un producto en la base datos
+	 * 
+	 * @param dto
+	 */
+	public ResponseEntity<?> insertProducto(ProductoDto dto);
+
+}

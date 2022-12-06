@@ -1,0 +1,31 @@
+package com.crudproducto.servicio.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import com.crudproducto.dao.IProductoDao;
+import com.crudproducto.dto.ProductoDto;
+import com.crudproducto.servicio.IProductoService;
+
+public class ProductoService implements IProductoService{
+	
+	@Autowired
+	private IProductoDao dao;
+
+	@Override
+	public ResponseEntity<?> insertProducto(ProductoDto dto) {
+		try {
+			if (!dao.isProduct(dto.getNombre())) {
+				dao.insertProducto(dto);
+				return new ResponseEntity<>("producto registrado con exito", HttpStatus.CREATED);
+			} else {
+				return new ResponseEntity<>("El producto ya existe", HttpStatus.BAD_REQUEST);
+			}
+
+		} catch (Exception e) {
+			return new ResponseEntity<>("ocurrio un error interno", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+}

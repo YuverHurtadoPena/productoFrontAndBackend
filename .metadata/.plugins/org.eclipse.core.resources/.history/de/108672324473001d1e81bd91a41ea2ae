@@ -1,0 +1,5 @@
+package com.crudproducto.servicio.impl;
+
+public class ProductoService {
+
+}

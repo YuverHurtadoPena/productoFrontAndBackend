@@ -1,0 +1,7 @@
+package com.crudproducto.servicio.impl;
+
+import com.crudproducto.servicio.IProductoService;
+
+public class ProductoService implements IProductoService{
+
+}

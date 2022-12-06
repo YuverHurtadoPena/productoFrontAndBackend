@@ -1,0 +1,16 @@
+package com.crudproducto.servicio;
+
+import org.springframework.http.ResponseEntity;
+
+import com.crudproducto.dto.ProductoDto;
+
+public interface IProductoService {
+
+	/**
+	 * Guardar un producto en la base datos
+	 * 
+	 * @param dto
+	 */
+	public ResponseEntity<?>  insertProducto(ProductoDto dto);
+
+}
