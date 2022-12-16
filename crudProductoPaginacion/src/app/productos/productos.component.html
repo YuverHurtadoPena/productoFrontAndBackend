@@ -16,17 +16,14 @@
         </select>
       </div>
       <div>
-        <a class="btn" style="background-color: green; color:white">
-          <i style="margin-right: 10px" class="fa-sharp fa-solid fa-plus"></i>
-          <button type="button" style="background-color: green; color:white; border:none" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Nuevo producto
-          </button>
+        <a (click)="resetEdit()" class="btn" style="background-color: green; color:white;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          +
         </a>
       </div>
 
     </div>
     <div class="card-footer text-muted">
-      {{dia}}/{{mes}}/{{anno}} - {{hora}}:{{minuto}}
+      {{dia}}/{{mes}}/{{anno}}
     </div>
   </div>
 
@@ -34,7 +31,7 @@
 
   <!--Inicio lista-->
 
-  <table id="customers">
+  <table id="tabla">
     <th>Nombre</th>
     <th>Precio</th>
     <th>Descripcion</th>
@@ -47,9 +44,9 @@
       <td>{{item.descripcion}}</td>
       <td>{{item.fechaRegistro | date:'dd/MM/yyyy'}}</td>
       <td>
-        <i style="margin-right: 10px; color: green;" class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)=" setValoresToForm(item.nombre, item.descripcion, item.valor)"></i>
-
-        <i style=" color: red;" class="fa-solid fa-trash-can" (click)="deleteProduct(item.nombre)"></i>
+        <button style="--bs-btn-padding-x: 0.2rem !important;
+        --bs-btn-padding-y: 0.2rem !important;" type="button" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)=" setValoresToForm(item.nombre, item.descripcion, item.valor)">Editar</button>
+        <button style="margin-left: 10px;--bs-btn-padding-x: 0.2rem !important; --bs-btn-padding-y: 0.2rem !important;" type="button" class="btn btn-danger" (click)="deleteProduct(item.nombre)">Eliminar</button>
       </td>
     </tr>
   </table>

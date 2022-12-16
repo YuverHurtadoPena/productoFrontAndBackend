@@ -27,8 +27,6 @@ export class ProductosComponent implements OnInit {
   mes = new Date().getMonth();
   dia = new Date().getDay();
   anno = new Date().getFullYear();
-  hora = new Date().getHours();
-  minuto = new Date().getMinutes();
 
   formulario = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.maxLength(150)]),
@@ -120,6 +118,12 @@ export class ProductosComponent implements OnInit {
     this.editar = false;
   }
 
+  resetEdit(){
+    this.editar = false;
+    this.isValidForm = false;
+    this.formulario.reset();
+  }
+
   updateProduct() {
     let dto = new ProductoDto();
     dto.nombre = this.formulario.controls['name'].value.trim();
@@ -137,14 +141,17 @@ export class ProductosComponent implements OnInit {
         this.getAllProduct();
       },
     });
+
     this.formulario.reset();
   }
+
+
 
   saveProduct() {
     let dto = new ProductoDto();
     dto.nombre = this.formulario.controls['name'].value.trim();
     dto.descripcion = this.formulario.controls['description'].value.trim();
-    dto.valor = this.formulario.controls['precio'].value.trim();
+    dto.valor = this.formulario.controls['precio'].value;
 
     if (this.formulario.valid) {
       this.productService.saveProduct(dto).subscribe({
@@ -158,6 +165,17 @@ export class ProductosComponent implements OnInit {
           });
           this.getAllProduct();
         },
+        error:(err)=>{
+
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: err.error.mensaje,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+
       });
       this.formulario.reset();
     }
